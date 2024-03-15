@@ -5,6 +5,10 @@
       <h1>Pinia Store</h1>
     </header>
 
+    <div class="new-task-form">
+      <NewTask />
+    </div>
+
     <nav class="filters">
       <button class="text-white bg-green-400 mr-3 px-8 py-2 rounded-md mt-2" type="button" @click="filter = 'all'">All</button>
       <button class="text-white bg-green-400 mr-3 px-8 py-2 rounded-md mt-2" type="button" @click="filter = 'favs'">Favs</button>
@@ -32,9 +36,10 @@
 import { ref } from 'vue';
 import TaskDetails from './components/TaskDetails.vue'
 import { useTaskStores } from './stores/TaskStore'
+import NewTask from './components/NewTask.vue';
 
 export default {
-  components: { TaskDetails },
+  components: { TaskDetails, NewTask },
   setup () {
     const taskStore = useTaskStores();
     const filter = ref('all');
