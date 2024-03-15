@@ -1,0 +1,24 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "first tasks",
+      "isFav": false
+    },
+    {
+      "id": "2",
+      "title": "Seconds tasks",
+      "isFav": true
+    },
+    {
+      "id": 18,
+      "title": "third tasks",
+      "isFav": true
+    },
+    {
+      "id": 18,
+      "title": "fourth",
+      "isFav": true
+    }
+  ]
+}

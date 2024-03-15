@@ -8,7 +8,9 @@
     <div class="new-task-form">
       <NewTask />
     </div>
-
+    <div v-if="taskStore.loading">
+      Loading task ......
+    </div>
     <nav class="filters">
       <button class="text-white bg-green-400 mr-3 px-8 py-2 rounded-md mt-2" type="button" @click="filter = 'all'">All</button>
       <button class="text-white bg-green-400 mr-3 px-8 py-2 rounded-md mt-2" type="button" @click="filter = 'favs'">Favs</button>
@@ -43,6 +45,8 @@ export default {
   setup () {
     const taskStore = useTaskStores();
     const filter = ref('all');
+
+    taskStore.getTask();
     
     return { taskStore, filter }
   }
