@@ -1,10 +1,22 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { ref } from 'vue';
+const rawHtml = '<span style="color:white"><i>Tailwind</i></span>';
+const eventName = ref("click");
+const count = ref(0);
+const url = 'https://www.youtube.com/';
+const increment = () => {
+  count.value++;
+}
+
 </script>
 
 <template>
-  <h2 class="text-red-600">Successfully Install Tailwind</h2>
+  <div>
+    <h2 class="text-red-600">
+      Successfully Install <span v-html="rawHtml"></span>
+    </h2>
+    <a @[eventName]="increment" class="bg-red">click me {{ count }}</a>
+  </div>
 </template>
 
 <style scoped>
