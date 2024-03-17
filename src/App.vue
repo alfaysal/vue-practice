@@ -1,21 +1,50 @@
 <script setup>
-import { ref } from 'vue';
-const rawHtml = '<span style="color:white"><i>Tailwind</i></span>';
-const eventName = ref("click");
-const count = ref(0);
-const url = 'https://www.youtube.com/';
-const increment = () => {
-  count.value++;
+import { computed, ref } from 'vue';
+const author = ref({
+  firstName: 'All',
+  secondName: '',
+  books: [
+    'Vue 2 - Advanced Guide',
+    'Vue 3 - Basic Guide',
+    'Vue 4 - The Mystery'
+  ]
+});
+
+const addNewBook = () => {
+  author.value.books.push('new book added');
+} 
+
+const booksCount = computed(() => {
+
+  return author.value.books.length > 0 ? author.value.books.length : 'No Book Available';
+});
+
+// getters setters
+const fullName = computed({
+  get() {
+    return author.value.firstName + ' ' + author.value.secondName
+  },
+  set(newName) {
+    [author.value.firstName, author.value.secondName] = newName.split(' ');
+  }
+})
+
+if (! author.value.firstName || !author.value.secondName) {
+  fullName.value = "Al Faysal";
 }
+
 
 </script>
 
 <template>
   <div>
+    <div>
+      <h2>Author Name: {{ fullName }}</h2>
+    </div>
     <h2 class="text-red-600">
-      Successfully Install <span v-html="rawHtml"></span>
+      Books Count - {{ booksCount }}
     </h2>
-    <a @[eventName]="increment" class="bg-red">click me {{ count }}</a>
+    <a @click="addNewBook">Click me</a>
   </div>
 </template>
 
