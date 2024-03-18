@@ -1,10 +1,34 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { reactive, ref } from 'vue'
+import  TodoItem  from './components/TodoItem.vue'
+const items = ref([
+  {
+    item:1,
+    message: "first message",
+  },
+  {
+    item: 2,
+    message: "second message",
+  }
+]);
+const itemObjects = reactive({
+  title: 'How to do lists in Vue',
+  author: 'Jane Doe',
+  publishedAt: '2016-04-10',
+});
+
 </script>
 
 <template>
-  <h2 class="text-red-600">Successfully Install Tailwind</h2>
+  <h2 class="text-red-600" v-for="(item, index) in items" :key="item.item">{{ index }} message ->{{ item.message }}</h2>
+  <br>
+  <h2 class="text-red-600" v-for="({message}, index) in items" :key="index">{{ index }} message ->{{ message }}</h2>
+  <br>
+  <h2 class="text-red-600" v-for="(value, key, index) in itemObjects" :key="index">{{ index }} key-> {{ key }} message ->{{ value }}</h2>
+  <br>
+
+  <TodoItem v-for="item in items" :key="item.item" :item="item"/>
+
 </template>
 
 <style scoped>
