@@ -1,10 +1,10 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import Form from './components/Form.vue'
 </script>
 
 <template>
-  <h2 class="text-red-600">Successfully Install Tailwind</h2>
+  <Form />
 </template>
 
 <style scoped>
