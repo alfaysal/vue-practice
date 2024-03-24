@@ -1,10 +1,68 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { reactive, ref, watch, watchEffect } from "vue";
+import { RouterLink, RouterView } from "vue-router";
+import Child from './components/Child.vue'
+const questions = ref("");
+const answers = ref("questions contain ? mark");
+const isDisabled = ref(false);
+const reactiveWatch = reactive({count: 0});
+
+const x = ref(0);
+const y = ref(8);
+
+// single reactive
+watch(questions, (newValue) => {
+  console.log("i called", newValue);
+},
+{ once: true }
+);
+
+// getters
+watch(
+  () => x.value + y.value,
+  (sum) => {
+    console.log("getters", sum);
+  }
+,
+{ immediate: true }
+);
+
+
+// multiple source
+watch([questions, () => x.value], ([newQuestions, newX]) => {
+  console.log(newQuestions, newX);
+})
+
+// reactive object
+watch(() => reactiveWatch.count, (count, oldCount) => {
+  console.log('reactive', count, oldCount);
+})
+
+//watcheffect
+
+watchEffect(()=> {
+  console.log("watch effetc ", x.value);
+});
+
 </script>
 
 <template>
-  <h2 class="text-red-600">Successfully Install Tailwind</h2>
+  <div>
+    <h4>Ask Questions</h4>
+    <input type="text" v-model="questions" :disabled="isDisabled" />
+  </div>
+  <div>
+    <h2>Answers {{ answers }}</h2>
+  </div>
+
+  <div>
+    <button class="m-8 bg-red-800 text-white" @click="x++">click</button>
+  </div>
+
+  <div>
+    <Child :reactiveWatch="reactiveWatch.count"/>
+    <button class="m-8 bg-yellow-800 text-white" @click="reactiveWatch.count++">Reactive click</button>
+  </div>
 </template>
 
 <style scoped>
