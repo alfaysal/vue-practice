@@ -1,10 +1,44 @@
 <script setup>
+import { onMounted, ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import Child from './components/Child.vue'
+
+const ref_name = ref(null);
+const refs = ref([]);
+const lists = ref([1,2,3]);
+const childComponent = ref(null);
+
+onMounted(() => {
+  console.log(ref_name.value);
+  console.log(refs.value);
+  console.log(childComponent.value.childVar);
+  return ref_name.value.focus();
+});
 </script>
 
 <template>
   <h2 class="text-red-600">Successfully Install Tailwind</h2>
+
+  <div>
+    <input type="text" ref="ref_name" name="name">
+  </div>
+
+  <div>
+    <h3 :ref="(el) => console.log(el)">function ref</h3>
+  </div>
+
+  <div>
+    <ul>
+      <li v-for="(list, index) in lists" :key="index" ref="refs">
+        {{ list }}
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <Child ref="childComponent"/>
+  </div>
 </template>
 
 <style scoped>
