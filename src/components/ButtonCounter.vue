@@ -11,7 +11,10 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
-const props = defineProps(["fromProps"]);
+const props = defineProps({
+  fromProps: Number,
+  isValid: Boolean,
+});
 const emit = defineEmits(["enlarge-text", "short-text"]);
 const count = ref(0);
 

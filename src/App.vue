@@ -13,7 +13,8 @@ const counterFontSize = ref(1);
   <div class="mt-4">
     <div :style="{ fontSize: counterFontSize + 'em'}">
       <ButtonCounter 
-        fromProps="10" 
+        :from-props="10" 
+        :isValid="false" 
         @enlarge-text="counterFontSize += 0.1"
         @short-text="counterFontSize -= 0.1"
       />
