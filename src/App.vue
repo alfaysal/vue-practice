@@ -1,10 +1,37 @@
 <script setup>
+import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import ButtonCounter from './components/ButtonCounter.vue'
+import Alert from './components/Alert.vue'
+import DynamicComponent from './components/DynamicComponent.vue'
+
+const counterFontSize = ref(1);
 </script>
 
 <template>
   <h2 class="text-red-600">Successfully Install Tailwind</h2>
+
+  <div class="mt-4">
+    <div :style="{ fontSize: counterFontSize + 'em'}">
+      <ButtonCounter 
+        fromProps="10" 
+        @enlarge-text="counterFontSize += 0.1"
+        @short-text="counterFontSize -= 0.1"
+      />
+    </div>
+  </div>
+
+  <div class="mt-4">
+    <h2>Slot</h2>
+    <Alert>
+      From Slot
+    </Alert>
+  </div>
+
+  <div class="mt-4">
+    <h2>Dynamic Component</h2>
+    <DynamicComponent />
+  </div>
 </template>
 
 <style scoped>
