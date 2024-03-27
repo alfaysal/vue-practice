@@ -3,7 +3,6 @@ import { ref } from 'vue'
 import { RouterLink, RouterView } from 'vue-router'
 import ButtonCounter from './components/ButtonCounter.vue'
 import Alert from './components/Alert.vue'
-import DynamicComponent from './components/DynamicComponent.vue'
 
 const counterFontSize = ref(1);
 </script>
@@ -30,7 +29,7 @@ const counterFontSize = ref(1);
 
   <div class="mt-4">
     <h2>Dynamic Component</h2>
-    <DynamicComponent />
+    <Dynamic />
   </div>
 </template>
 
